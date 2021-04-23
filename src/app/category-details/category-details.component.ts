@@ -16,5 +16,8 @@ export class CategoryDetailsComponent implements OnInit {
       this.catrgoryID=parseInt(params.get('id'));
     })
   }
+  goToProductDtails(Id:Number){
+    this.router.navigate(["/ProductDetails",Id]);
+  }
 
 }
