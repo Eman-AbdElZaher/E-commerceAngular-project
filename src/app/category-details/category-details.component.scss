@@ -1,0 +1,12 @@
+$maincolor:#e7ab3c;
+.product-item {
+    margin-bottom: 26px;
+    img{
+      max-height:250px;
+    }
+    .product-price {
+            color:$maincolor;
+            font-size: 20px;
+            font-weight: 700;
+    }
+   }

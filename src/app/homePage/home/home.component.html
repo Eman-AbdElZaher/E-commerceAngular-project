@@ -3,14 +3,12 @@
       <div class="carousel-item active">
         <div class="row">
         <div class="view">
-        <img class="d-block w-100" src="assets/images/hero-1.jpg"
+        <img class="d-block w-100" src="assets/images/hero-2.jpg"
           alt="First slide">
           </div>
-            <div class="col-lg-5 carousel-caption">
-            <span>Bag,kids</span>
-            <h1 class="text-black">Black friday</h1>
-            <p class="text-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore</p>
+            <div class="col-lg-5 carousel-caption text-center">
+            <h1 class="text-black text-uppercase">Black friday</h1>
+            <p>save up to 40% off</p>
             <a href="#" class="primary-btn">Shop Now</a>
             </div>
             </div> 
@@ -18,12 +16,11 @@
       <div class="carousel-item">
           <div class=row>
           <div class="view">
-            <img class="d-block w-100" src="assets/images/hero-2.jpg"
+            <img class="d-block w-100" src="assets/images/hero-1.jpg"
             alt="Third slide">
           </div>
-          <div class="col-lg-5 carousel-caption">
-            <span>new collection</span>
-            <h1>women's fashion</h1>
+          <div class="col-lg-5 carousel-caption text-center">
+            <h1 class="text-uppercase">women's fashion</h1>
             <p>save up to 40% off</p>
             <a href="#" class="primary-btn">Shop Now</a>
             </div>
@@ -38,6 +35,21 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+  <!------------------------section of category---------------------------------->
+  <section class="Categories">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4 category" *ngFor="let cat of categories" (click)="goToCategoryDetails(cat)">
+          <div class="single-banner">
+            <img src="assets/images/banner-2.jpg" alt="">
+            <div class="inner-text">
+            <h4>{{cat.name}}</h4>
+            </div>
+            </div>
+        </div>
+      </div>
+  </div>
+  </section>
 
     <script>
         $('.carousel').carousel()
