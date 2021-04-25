@@ -1,0 +1,23 @@
+<h1>Products</h1>
+<table class ="table    ">
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Quantity</td> 
+        <td>Color</td>
+        <td>Category ID</td>   
+        <td col-span="3">Links</td>   
+    </tr>
+    <tr *ngFor="let item of products ;">
+        <td >{{item.ID}}</td>
+        <td>{{item.Name}}</td>
+         <td>{{item.Price}}</td>
+        <td>{{item.Quantity}}</td>       
+        <td>{{item.Color}}</td>
+        <td>{{item.CategoryId}}</td>
+        <td> <a class="nav-link" routerLink="/update/{{item.ID}}">update </a></td>
+        <td><a class="nav-link" routerLink="/delete/{{item.ID}}">delete </a></td>
+        <td><a class="nav-link" routerLink="/details/{{item.ID}}">details </a></td>
+    </tr>
+</table>
