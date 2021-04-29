@@ -1,0 +1,51 @@
+$maincolor:#b48619;
+a{
+    text-decoration: none;
+    color: #fff;
+}
+body{font-size: 19px;}
+.navbar {
+    background: rgb(0, 0, 0, 0.9);
+    color: #fff;
+    z-index: 9999;
+  }
+  
+  .navbar-dark .navbar-nav .nav-link:hover,
+  .navbar-dark .navbar-nav .active > .nav-link {color:$maincolor ; border-bottom: 1px solid $maincolor; }
+  .navbar-brand span {color: $maincolor;font-size: 23px;}
+  
+  .navbar-collapse {font-size: 12px;}
+  
+  .navbar-dark .navbar-nav .nav-link {color: #fff;}
+  .navbar .nav_icons form {top: 43px; right: 30px; display: none;}
+.navbar .nav_icons i {cursor: pointer;}
+.navbar .nav_icons i:hover {color: $maincolor;}
+
+.navbar .nav_icons .close_icon {left: 10px; top: 3px;}
+.navbar .nav_icons .close_icon:hover {color: rgb(190, 0, 0);}
+.opacity_0 {opacity: 0; z-index: -1;}
+.navbar .container-md{
+     display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 80%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.authent a{
+    font-size: 15px;
+}
+.signup{
+    border:1px solid $maincolor;
+    border-radius: 5px;
+    margin-left:10px;
+    &:hover{
+        color: #fff;
+    }
+}
