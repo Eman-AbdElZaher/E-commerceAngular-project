@@ -1,20 +1,20 @@
 export interface ICategory
 {
-    ID : number,
-  	Name : string,  
-   	Image : string
+    id : number,
+  	name : string,  
+   	image : string
    
 }
 export class Category implements  ICategory 
 {
-   ID : number;
-   Name : string;
-   Image : string;
+   id : number;
+   name : string;
+   image: string;
   constructor (id:number,name:string,image:string)
   {
-    this.ID=id;
-    this.Name=name;
-    this.Image=image;  
+    this.id=id;
+    this.name=name;
+    this.image=image;  
   }
 }
  
