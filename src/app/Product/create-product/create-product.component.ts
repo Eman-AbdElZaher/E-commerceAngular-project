@@ -1,63 +1,93 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Colors, Product } from 'src/app/Product/services/Api_product';
+import { Colors, IProduct, Product } from 'src/app/Product/services/Api_product';
 import { ProductCRUDOperationService } from 'src/app/Product/services/product-crud-operation.service';
 import {checkQuantity} from 'src/app/Product/Custom Validation/Quantityvalidation';
 import {checkPrice} from 'src/app/Product/Custom Validation/Pricevalidation';
 import {checkImg} from 'src/app/Product/Custom Validation/imgvalidators';
+import { ICategory } from 'src/app/Services/API_Category';
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
   styleUrls: ['./create-product.component.scss']
 })
 export class CreateProductComponent implements OnInit {
+  errorMsg: any;
 
   constructor(private ProductService:ProductCRUDOperationService,private fb:FormBuilder) { }
-color=Colors;//["Red","Green","Yellow","Black","White","Blue"];
+colors=Colors;//["Red","Green","Yellow","Black","White","Blue"]
 createproduct=this.fb.group({ 
-  Name :['',[Validators.required,Validators.minLength(3),Validators.maxLength(10)]],
-  Quantity:['',Validators.required],
-  Price:['',Validators.required],
-  Img:['',Validators.required],
-  Color:['',Validators.required] ,
-  CategoryId:['',Validators.required]
+  name :['',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]],
+  quantity:['',Validators.required],
+  price:['',Validators.required],
+  image:['',Validators.required],
+  color:['',Validators.required] ,
+  categoryID:['',Validators.required]
 },{validators:[checkPrice]})
 
-get Name(){
-return this.createproduct.get('Name');
+get name(){
+return this.createproduct.get('name');
 }
-get Quantity(){
-  return this.createproduct.get('Quantity');
+get quantity(){
+  return this.createproduct.get('quantity');
   }
-get Price(){
-    return this.createproduct.get('Price');
+get price(){
+    return this.createproduct.get('price');
     }
-get Img(){
-      return this.createproduct.get('Img');
+get image(){
+      return this.createproduct.get('image');
+}
+get color(){
+  return this.createproduct.get("color")
+}
+get categoryID(){
+  return this.createproduct.get("categoryID")
 }
 
- count :number=-1;
  res:string="no";
+ p:IProduct
 create()
-{console.log(this.count);
-  this.count=this.ProductService.getAll().length;
-  let  pro= new Product(
-    this.count+1,this.Name.value,this.Quantity.value,this.Price.value,this.Img.value,
-    this.createproduct.get('Color').value,this.createproduct.get('CategoryId').value);
-  pro.ID=this.count;
- this.res= this.ProductService.Create(pro);
-
- console.log("product created data :"+this.res);
-this. p=pro;
-
-}
- p:Product;
-  ngOnInit(): void {
+{
+this.p={
+  id:0,
+  name:this.name.value,
+  description:"good",
+  rate:0,
+  quantity:this.quantity.value,
+  price:this.price.value,
+  image:this.image.value,
+  color:this.createproduct.get("color").value,
+  categoryID:this.createproduct.get("categoryID").value
+ };
+this.ProductService.CreatePro(this.p).subscribe(
+  pro=>{
+    this.p=pro;
+    console.log("res:"+this.p)//for test
+  },
+  errorResponse=>
+  {
+   this.errorMsg=errorResponse;
   }
-  
-category=[
-  {id:1,name:"category one"},
-  {id:2,name:"category two"},
-  {id:3,name:"category three"}
-]
+  );
+    
 }
+
+category:ICategory[]=[];
+  ngOnInit(): void {
+    this.ProductService.returnAllCategory().subscribe(
+      Cat=>{
+        this.category=Cat;
+        console.log(this.category.length)//for test
+      },
+      errorResponse=>
+      {
+       this.errorMsg=errorResponse;
+      }
+      )
+  }
+  }
+
+  
+
+
+

@@ -2,29 +2,21 @@ import { AbstractControl } from "@angular/forms";
 
 export function checkPrice(control:AbstractControl)
 {
-  const Price=  control.get('Price');
-  // console.log("a"+isFinite(Price.value))
-  //console.log("b"+isNaN(Price.value))
+  const Price=  control.get('price');
+ 
    if(Price.touched)
   {
-    console.log("touch");
+    console.log("touch");//for test
      if((isFinite(Price.value)))
-   { console.log("number");
+   { console.log("number");//for test
      if(parseInt(Price.value)>0)
-     {console.log("great than zero");
+     {console.log("great than zero");//for test
        return  {'Pvalid':true}
       }
   }
 }
-  //  else{console.log("3")
+ 
   return null;
  
   
-  // if(Price.pristine )
-  // {
-  //     return null;
-  // }
-  // return Price &&Price.value>0
-  // ? {'P_valid':true}
-  // :null;
 }

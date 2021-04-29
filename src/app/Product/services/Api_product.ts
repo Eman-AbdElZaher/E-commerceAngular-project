@@ -1,32 +1,37 @@
 export interface IProduct
 {
-    ID : number,
-  	Name : string,
-   	Quantity : number,
-    Price : number,
-   	Img : string
-    Color:string,
-    CategoryId:number
+    id : number,
+  	name : string,
+   	quantity : number,
+    price : number,
+    image : string
+    color:string,
+    categoryID:number,
+    description:string,
+    rate:number
     
 }
 export class Product implements IProduct
 {
-  ID : number;
-  Name : string;
-   Quantity : number;
-  Price : number;
-   Img : string;
-   Color:string;
-   CategoryId:number
+  
+  id : number;
+  name : string;
+   quantity : number;
+  price : number;
+  image : string;
+  color:string;
+  categoryID:number;
+  description:string;
+  rate:number;
   constructor (id:number,name:string,q:number,price:number,img:string,c:string, CategoryId:number)
   {
-    this.ID=id;
-    this.Name=name;
-    this.Quantity=q;
-    this.Price=price;
-    this.Img=img;
-    this.Color=c;
-    this.CategoryId=CategoryId;
+    this.id=id;
+    this.name=name;
+    this.quantity=q;
+    this.price=price;
+    this.image=img;
+    this.color=c;
+    this.categoryID=CategoryId;
    
   }
 }

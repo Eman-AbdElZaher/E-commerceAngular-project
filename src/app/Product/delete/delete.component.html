@@ -1,24 +1,24 @@
-<div class="danger">
+  <div class="text-danger">
     Are You Sure You will delete this product
     </div>
     <div>
         <div>
-            Product ID:{{pro.ID}}
+            Product ID:{{id}}
         </div>
         <div>
-            Product Name:{{pro.Name}}
+            Product Name:{{pro.name}}
         </div>
         <div>
-            Product Price:{{pro.Price}}
+            Product Price:{{pro.price}}
         </div>
         <div>
-            Product Color:{{pro.Color}}
+            Product Color:{{pro.color}}
         </div>
         <div>
-            Product Image:<img src="./assets/{{pro.Img}}" width="200px" height="200px">
+            Product Image:<img src="./assets/{{pro.image}}" width="200px" height="200px">
         </div>
      
         </div>
       <form>
           <input type="button" class="btn btn-danger" (click)="Deletepro()" value="Delete">
-      </form>
+      </form>  

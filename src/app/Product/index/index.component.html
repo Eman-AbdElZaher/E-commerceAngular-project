@@ -1,23 +1,39 @@
 <h1>Products</h1>
-<table class ="table    ">
+<table  class="table table-hover">
+    <thead>
+        
+    
     <tr>
-        <td>ID</td>
-        <td>Name</td>
-        <td>Price</td>
-        <td>Quantity</td> 
-        <td>Color</td>
-        <td>Category ID</td>   
-        <td col-span="3">Links</td>   
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th> 
+        <th>Color</th>
+        <th>Rate</th>
+        <th>Description</th>
+       
+        <th>Image name</th>
+
+        <th>Category ID</th>     
+        <th col-span="3">Links</th>   
     </tr>
-    <tr *ngFor="let item of products ;">
-        <td >{{item.ID}}</td>
-        <td>{{item.Name}}</td>
-         <td>{{item.Price}}</td>
-        <td>{{item.Quantity}}</td>       
-        <td>{{item.Color}}</td>
-        <td>{{item.CategoryId}}</td>
-        <td> <a class="nav-link" routerLink="/update/{{item.ID}}">update </a></td>
-        <td><a class="nav-link" routerLink="/delete/{{item.ID}}">delete </a></td>
-        <td><a class="nav-link" routerLink="/details/{{item.ID}}">details </a></td>
+</thead>
+    <tbody>
+    <tr *ngFor="let product of ProductList">
+        <td >{{product.id}}</td>
+        <td>{{product.name}}</td>
+         <td>{{product.price}}</td>
+        <td>{{product.quantity}}</td>       
+        <td>{{product.color}}</td>
+        <td>{{product.rate}}</td>
+        <td>{{product.description}}</td>        
+        <td>{{product.image}}</td>
+        <td>{{product.categoryID}}</td>
+        <td> <a class="nav-link" routerLink="/update/{{product.id}}">update </a></td>
+        <td><a class="nav-link" routerLink="/delete/{{product.id}}">delete </a></td>
+        <td><a class="nav-link" routerLink="/details/{{product.id}}">details </a></td>
     </tr>
+
+</tbody>
 </table>
+

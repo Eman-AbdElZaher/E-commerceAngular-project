@@ -1,54 +1,50 @@
-<div class="container">
+ <div class="container">
     <h3>Create Product </h3>
     <form [formGroup]="createproduct">
-        <div class="form-group">
-            id
-             {{count+1}}
-           
-        </div>
+      
         <div class="form-group">
              <label> Name</label>
-             <input formControlName="Name" [class.is-invalid]="Name.invalid && Name.touched" type="text" class="form-control" />
+             <input formControlName="name" [class.is-invalid]="name.invalid && name.touched" type="text" class="form-control" />
            
         </div>
-        <div *ngIf="Name.invalid &&Name.touched">
-            <small class="text-danger" *ngIf="Name.errors.required">User Name is required</small>
-            <small class="text-danger" *ngIf="Name.errors.minlength">Min Length is 3</small>
-            <!-- <small class="text-danger" *ngIf="Name.errors.forbiddenName">{{userName.errors.forbiddenName.value}} is not allowed</small> -->
-        </div>
+        <div *ngIf="name.invalid &&name.touched">
+            <small class="text-danger" *ngIf="name.errors.required">User Name is required</small>
+            <small class="text-danger" *ngIf="name.errors.minlength">Min Length is 3</small>
+           
+       </div>
     
             <div class="form-group">
              <label>Price</label>
-             <input formControlName="Price" [class.is-invalid]="Price.invalid && Price.touched"   type="text" class="form-control"/>
+             <input formControlName="price" [class.is-invalid]="price.invalid && price.touched"   type="text" class="form-control"/>
             <small class="text-danger" *ngIf="createproduct.errors?.P_valid">Price must be positive </small>
         </div>
-        <div *ngIf="Price.invalid &&Price.touched ">
-            <small class="text-danger" *ngIf="Price.errors.required">price is required</small>
-            <!-- <small class="text-danger" *ngIf="Price.errors.P_valid">must be positive</small> -->
-             <small class="text-danger" *ngIf="createproduct.errors?.P_valid">Not Allow</small> -->
+        <div *ngIf="price.invalid &&price.touched ">
+            <small class="text-danger" *ngIf="price.errors.required">price is required</small>
+            <small class="text-danger" *ngIf="price.errors.Pvalid">must be positive</small> -->
+            
         </div>
         <div class="form-group">
              <label>Quantity</label>
-             <input type="number" min="1"  formControlName="Quantity" [class.is-invalid]="Quantity.invalid && Quantity.touched"  class="form-control"/>
+             <input type="number" min="1"  formControlName="quantity" [class.is-invalid]="quantity.invalid && quantity.touched"  class="form-control"/>
             <small class="text-danger" *ngIf="createproduct.errors?.q_valid">Quantity must be positive and more than Zero</small>
         </div>
         color 
         <div class="form-group">
-            <select class="custom-select" formControlName="Color"    type="text" class="form-control"> 
+            <select class="custom-select" formControlName="color"    type="text" class="form-control"> 
                
 
-                <option *ngFor="let c of color" >{{c}}  </option>
+                <option *ngFor="let c of colors" >{{c}}  </option>
             </select>
         </div>
         CategoryId
         <div class="form-group">
-            <select class="custom-select" formControlName="CategoryId"    type="text" class="form-control"> 
+            <select class="custom-select" formControlName="categoryID"    type="text" class="form-control"> 
              <option *ngFor="let item of category" [value]="item.id">{{item.name}}  </option>
             </select>
         </div>
          <div class="form-group">
              <label>Image</label>
-             <input formControlName="Img" [class.is-invalid]="Img.invalid && Img.touched"   type="text" class="form-control"/>
+             <input formControlName="image" [class.is-invalid]="image.invalid && image.touched"   type="text" class="form-control"/>
             <small class="text-danger" *ngIf="createproduct.errors?.img_valid">Password and confirm password not match</small>
         </div>
 
@@ -56,8 +52,8 @@
             <button type="submit" [disabled]="createproduct.invalid" (click)="create()" class="btn btn-primary">Create</button>
     </form>
 
-        {{p|json}}
+      
    
         
-</div>
+</div>  
 

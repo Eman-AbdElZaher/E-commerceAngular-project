@@ -1,65 +1,77 @@
+import { HttpClient, HttpHeaders, JsonpClientBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Product} from './Api_product'
+// import { parse } from 'node:path';
+import { Observable, throwError } from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import { ICategory } from 'src/app/Services/API_Category';
+import {IProduct, Product} from './Api_product'
 @Injectable({
   providedIn: 'root'
 })
 export class ProductCRUDOperationService {
 
-  constructor() { }
- products=new Array();
-Create( pro:Product)
-{
- // var temp:Product(pro.Name,pro.Quantity,pro.Price,pro.Img,pro.Color)
-this.products.push(pro);
-return "sucess";
-}
-getAll()
-{
-  return this.products;
-}
-getDetails(id:number)
-{
- let all= this.products
+  constructor(private  http:HttpClient) { }
+  url="http://localhost:36197/api/";
 
-let e;
-for(e of all)
-{
-if(e.id==id)
-{return e;}
+  returnAllCategory():Observable<ICategory[]>
+  {
+    return this.http.get<ICategory[]>(this.url+"Categories").pipe(catchError((err)=>
+    {
+      return throwError(err.message ||"Internal Server error contact site adminstarator");
+    }));
+  }
+ products=new Array();
+
+
+CreatePro(product:Product): Observable<any> {
+  const headers = { 'content-type': 'application/json'}  
+  const body=JSON.stringify(product);
+  console.log(body)
+  return this.http.post('http://localhost:36197/api/Products', body,{'headers':headers})
 }
-return null;
+
+getAll():Observable<IProduct[]>
+{//http://localhost:32348/api/Products
+  return this.http.get<IProduct[]>("http://localhost:36197/api/Products").pipe(catchError((err)=>
+  {
+    return throwError(err.message ||"Internal Server error contact site adminstarator");
+  }));
+}
+getDetails(id:number):Observable<IProduct>
+{console.log("url:"+"http://localhost:36197​/api​/Products​/"+id);
+console.log("res"+this.http.get<IProduct>("http://localhost:36197​/api​/Products​/"+id));
+
+  return this.http.get<IProduct>("http://localhost:36197/api/Products/"+id).pipe(catchError((err)=>
+  {
+    return throwError(err.message ||"Internal Server error contact site adminstarator");
+  }));
 }
 
 Update(pro:Product)
 {
- let temp= this.getDetails(pro.ID);
- if(temp!=null)
- {
-   temp.Name=pro.Name;
-   temp.Quantity= pro.Quantity;
-   temp.Price= pro.Price;
-   temp.Img= pro.Img;
-   temp.Color=pro.Color
-  let res= this.products.findIndex(p=>p.ID==pro.ID);
-  if(res!=-1)
-  {
-    this.products[res]=temp;
-  }
- }
+ console.log(pro);
+ // const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
+ const headers = { 'content-type': 'application/json'}   
+ //const body =JSON.stringify(pro);
+  return  this.http.put<IProduct>("http://localhost:36197/api/Products/"+pro.id,pro,{'headers':headers})
+       
+   
 }
 Delete(id:number)
 {
-  let res= this.products.findIndex(p=>p.ID==id);
-  if(res!=-1)
-  {
-    for(let i=res;i<this.products.length-1;i++)
-    {
-         this.products[res]=this.products[res+1];
-    }
-    return "Sucessfully Deleted";
-  }
-  else{
-    return "Element not found";
-  }
+ return  this.http.delete("http://localhost:36197/api/Products/"+id)//.pipe(catchError((err)=>
+//   {
+//     return throwError(err.message ||"Internal Server error contact site adminstarator");
+//   }));
+        // .subscribe({
+        //     next: data => {
+        //         return 'Delete successful';
+        //     },
+        //     error: error => { 
+        //       console.error('There was an error!', error);
+        //         return error.message;
+               
+        //     }
+        // });
 }
-}
+ }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Product } from 'src/app/Product/services/Api_product';
+import { IProduct, Product } from 'src/app/Product/services/Api_product';
 import { ProductCRUDOperationService } from 'src/app/Product/services/product-crud-operation.service';
 
 @Component({
@@ -9,23 +9,51 @@ import { ProductCRUDOperationService } from 'src/app/Product/services/product-cr
   styleUrls: ['./delete.component.scss']
 })
 export class DeleteComponent implements OnInit {
+  errorMsg: any;
 
-  constructor(private activatedRoute:ActivatedRoute,private ProductService:ProductCRUDOperationService) { }
-  pro :Product;
+  constructor(private activatedRoute:ActivatedRoute,private ProductService:ProductCRUDOperationService) {}
 
-  ngOnInit(): void {
+   
+ 
+  pro :IProduct;
+  id:number;
+  Deletepro()
+  { console.log("detlete")
+    this.ProductService.Delete(this.id).subscribe(
+      p=>{
+       
+        console.log("detlete:"+p)//for test
+        return "ok";
+      },
+      errorResponse=>
+      {
+       this.errorMsg=errorResponse;
+       return errorResponse
+      }
+    )
+   }
+
+   ngOnInit(): void {
+   
     this.activatedRoute.paramMap.subscribe((params:ParamMap)=>
-   {this.pro=new Product(1,"k",4,200,"1.ico","red",2);
-    // this.pro=this.ProductService.getDetails( parseInt(params.get('id')));
-   })
+    {
+      this.ProductService.getDetails(parseInt(params.get('id'))).subscribe(
+       p=>{
+        console.log(p)//for test
+         this.pro=p;
+         this.id=parseInt(params.get('id'));
+         console.log(this.id+"id:"+p.id)//for test
+         console.log(this.pro)//for test
+       },
+       errorResponse=>
+       {
+        this.errorMsg=errorResponse;
+       }
+       )
+     
+    })
+   }
+ 
   }
- res:any;
- Deletepro()
-  {console.log();
-   
-   
-   this.res= this.ProductService.Delete(this.pro.ID);
-   console.log(this.res);
-  }
-}
+
 
