@@ -6,16 +6,16 @@
             <div class="col-lg-4 col-md-6" *ngFor="let item of ProdutList">
                 <!-- Card -->
                 <div class="card product-item">
-                        <img class="card-img-top" [src]="item.Image" alt="Sample">
+                        <img class="card-img-top" [src]="assets/images/item.image" alt="Sample">
                 
                     <div class="card-body text-center">
-                    <h5>{{item.Name}}</h5>
-                    <p class="small text-muted text-uppercase mb-2">{{item.CategoryId}}</p>
+                    <h5>{{item.name}}</h5>
+                    <p class="small text-muted text-uppercase mb-2">{{item.categoryID}}</p>
                     <hr>
                     <h6 class="mb-3">
-                        <span class=" mr-1 product-price">{{item.Price}}</span>
+                        <span class=" mr-1 product-price">{{item.price}}</span>
                     </h6>
-                    <button type="button" class="btn btn-light btn-block mr-1 mb-2" (click)="goToProductDtails(item.ID)">
+                    <button type="button" class="btn btn-light btn-block mr-1 mb-2" (click)="goToProductDtails(item.id)">
                         <i class="fas fa-info-circle pr-2"></i>Details
                     </button>
                 </div>
@@ -25,3 +25,4 @@
         </div>
     </div>
 </section>
+<app-footer></app-footer>

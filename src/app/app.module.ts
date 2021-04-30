@@ -25,6 +25,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { AuthGuardService } from './Services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ AuthGuardService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,16 +13,16 @@
           <a class="nav-link" routerLink="/Categories/1">Shop</a>
         </li>
         <div *ngIf="accountservice.currentUserId!= null">
-          <li class="nav-item px-2" *ngIf="accountservice.isLoggedIn() && accountservice.currentUser.admin">
+          <li class="nav-item px-2" *ngIf="accountservice.isLoggedIn()">
             <a class="nav-link" routerLink="/Admin">Admin</a>
           </li>
         </div>
       </ul>
-      <div class="ml-auto authent" *ngIf="accountservice.isLoggedIn()">
+      <div class="ml-auto authent" *ngIf="!accountservice.isLoggedIn()">
            <a routerLink="/Login" class=" pr-3 border-right">Log In</a>
           <a class="btn signup" [routerLink]="[ '/Register' ]">Sign UP</a>
       </div>
-      <div class="ml-auto authent" *ngIf="!accountservice.isLoggedIn()">
+      <div class="ml-auto authent" *ngIf="accountservice.isLoggedIn()">
         <a (click)="logout()">Logout</a> 
       </div>
     </div>

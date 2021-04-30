@@ -8,16 +8,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
-
 import{AddCategoryComponent} from './Category/add-category/add-category.component';
 import{UpdateCategoryComponent} from './Category/update-category/update-category.component';
 import{GetAllCategoryComponent} from './Category/get-all-category/get-all-category.component';
-
 import { CreateProductComponent } from './Product/create-product/create-product.component';
 import { DeleteComponent } from './Product/delete/delete.component';
 import { DetailsComponent } from './Product/details/details.component';
 import { IndexComponent } from './Product/index/index.component';
 import { UpdateComponent } from './Product/update/update.component';
+import { AuthGuardService } from './Services/auth-guard.service';
 
 const routes: Routes = [
   {path:'index',component:IndexComponent},
@@ -30,7 +29,13 @@ const routes: Routes = [
   {path:'update/:id',component:UpdateComponent},
   {path:'',redirectTo:'/Home',pathMatch:'full'},
   {path:"Home",component:HomeComponent},
-  {path:"Admin",component:AdminDashboardComponent},
+  {path:"Admin",component:AdminDashboardComponent,
+  canActivate: [AuthGuardService],
+  children:[
+    {path:'productIndex',component:IndexComponent},
+    {path:'CategoryIndex',component:GetAllCategoryComponent}
+  ]}
+,
   {path:"Register",component:RegisterComponent},
   {path:"Login",component:LoginComponent},
   {path:"Profile",component:UserComponent},

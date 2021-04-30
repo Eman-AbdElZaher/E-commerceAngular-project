@@ -42,7 +42,7 @@ authToken:any;
     }
     return this._http.post(`${ApiController.Account_URL}/login`,body,this.httpOptions)
     .pipe(catchError((err)=>{return throwError(err.message ||"Internal Server error contact site adminstarator")}
-    ),map((res) =>res));
+   ),map((res) =>res));
    }
 
    loadToken(){
@@ -51,12 +51,16 @@ authToken:any;
     return this.authToken;
 }
 
-isLoggedIn() {   
-  this.authToken = this.loadToken();
-        console.log('Expiration:'+this.jwthelper.isTokenExpired(this.authToken));
-        return this.jwthelper.isTokenExpired(this.authToken); 
-}
-getCurrentUser(param:string){
+  isLoggedIn() {   
+  let token= this.loadToken();
+        if(!token)
+          return false;
+
+       let expirationDate = this.jwthelper.getTokenExpirationDate(token);
+       let isExpired = this.jwthelper.isTokenExpired(token);
+       return !isExpired;
+  }
+getCurrentUser(url:string){
   if(localStorage.getItem('token')){
     let token = localStorage.getItem('token');
   
@@ -65,22 +69,22 @@ getCurrentUser(param:string){
     let decodedJwtJsonData = window.atob(jwtData)
   
     let decodedJwtData = JSON.parse(decodedJwtJsonData)
-    let userName=decodedJwtData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/'+param];
+    let userName=decodedJwtData[url];
     return userName;
   }
   return null;
 }
 get currentUserId()
 {
-   return this.getCurrentUser('nameidentifier');
+   return this.getCurrentUser('http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier');
 }
 get currentUserName()
 {
-   return this.getCurrentUser('name');
+   return this.getCurrentUser('http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name');
 }
 get currentUserRole()
 {
-   return this.getCurrentUser('role');
+   return this.getCurrentUser("http://schemas.microsoft.com/ws/2008/06/identity/claims/role");
 }
 /*get currentUser() {  
   let token = localStorage.getItem('token');  

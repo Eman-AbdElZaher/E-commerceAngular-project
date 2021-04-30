@@ -3,13 +3,13 @@
         <div class="row">
             <div class="col-md-6">
               <div class="product-img">
-                  <img [src]="product.Image">
+                  <img [src]="product.image">
               </div> 
             </div>
             <div class="col-md-6">
-                <h5>{{product.Name}}</h5>
-                <p class="mb-2 text-muted text-uppercase small">Shirts</p>
-                <ul class="rating">
+                <h5>{{product.name}}</h5>
+                <p class="mb-2 text-muted text-uppercase small">{{categoryName}}</p>
+                <ul class="rating flex">
                   <li>
                     <i class="fas fa-star fa-sm text-primary"></i>
                   </li>
@@ -26,18 +26,17 @@
                     <i class="far fa-star fa-sm text-primary"></i>
                   </li>
                 </ul>
-                <p><span class="mr-1"><strong>${{product.Price}}</strong></span></p>
-                <p class="pt-1">{{product.Desc}}</p>
+                <p><span class="mr-1"><strong>${{product.price}}</strong></span></p>
                 <div class="table-responsive">
                   <table class="table table-sm table-borderless mb-0">
                     <tbody>
                       <tr>
                         <th class="pl-0 w-25" scope="row"><strong>Model</strong></th>
-                        <td>{{product.Name}}</td>
+                        <td>{{product.name}}</td>
                       </tr>
                       <tr>
                         <th class="pl-0 w-25" scope="row"><strong>Color</strong></th>
-                        <td>{{product.Color}}</td>
+                        <td>{{product.color}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -47,7 +46,7 @@
                   <table class="table table-sm table-borderless">
                     <tbody>
                       <tr>
-                        <td class="pl-0 pb-0 w-25">{{product.Quantity}}</td>
+                        <td class="pl-0 pb-0 w-25">{{product.quantity}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -62,3 +61,4 @@
             </div>
         </div>
 </section>
+<app-footer></app-footer>

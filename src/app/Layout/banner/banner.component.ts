@@ -11,10 +11,17 @@ import { CategoryServicesService } from 'src/app/Services/category-services.serv
 export class BannerComponent implements OnInit {
   @Input() selectedCategoryID:number;
   category:ICategory;
+  errorMsg: any;
   constructor(private service:CategoryServicesService) { }
 
   ngOnInit(): void {
-    this.category= this.service.getDetails(this.selectedCategoryID);
+     this.service.getDetails(this.selectedCategoryID).subscribe(
+       (res) => this.category=res,
+       errorResponse=>
+    {
+     this.errorMsg=errorResponse;
+    }
+     );
   }
 }
 
