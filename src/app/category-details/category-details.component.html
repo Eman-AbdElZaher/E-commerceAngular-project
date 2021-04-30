@@ -1,21 +1,21 @@
 <!--<h1>you selected {{catrgoryID}}</h1>-->
-<app-banner></app-banner>
+<app-banner [selectedCategoryID]="catrgoryID"></app-banner>
 <section class="products-list">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6" *ngFor="let item of ProdutList">
                 <!-- Card -->
                 <div class="card product-item">
-                        <img class="card-img-top" src="assets/images/women-1.jpg" alt="Sample">
+                        <img class="card-img-top" [src]="item.Image" alt="Sample">
                 
                     <div class="card-body text-center">
-                    <h5>Fantasy T-shirt</h5>
-                    <p class="small text-muted text-uppercase mb-2">Shirts</p>
+                    <h5>{{item.Name}}</h5>
+                    <p class="small text-muted text-uppercase mb-2">{{item.CategoryId}}</p>
                     <hr>
                     <h6 class="mb-3">
-                        <span class=" mr-1 product-price">$12.99</span>
+                        <span class=" mr-1 product-price">{{item.Price}}</span>
                     </h6>
-                    <button type="button" class="btn btn-light btn-block mr-1 mb-2" (click)="goToProductDtails(2)">
+                    <button type="button" class="btn btn-light btn-block mr-1 mb-2" (click)="goToProductDtails(item.ID)">
                         <i class="fas fa-info-circle pr-2"></i>Details
                     </button>
                 </div>

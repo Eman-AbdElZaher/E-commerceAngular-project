@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { IProduct } from '../SharedClasses/IProduct';
 
 @Component({
   selector: 'app-category-details',
@@ -8,6 +9,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 })
 export class CategoryDetailsComponent implements OnInit {
   catrgoryID:number;
+  ProdutList:IProduct[]=[];
   constructor(private activatedRoute:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {

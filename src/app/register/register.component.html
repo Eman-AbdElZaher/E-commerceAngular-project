@@ -1,0 +1,51 @@
+<div class="container shadow-sm p-3 mb-5 bg-white rounded">
+    <h3>Register</h3>
+    <form [formGroup]="registerForm">
+        {{registerForm.value |json}}
+        <div class="form-group">
+             <label>User Name</label>
+             <input formControlName="UserName" [class.is-invalid]="UserName.invalid && UserName.touched" type="text" class="form-control" />
+       
+        <div *ngIf="UserName.invalid && UserName.touched">
+            <small class="text-danger" *ngIf="UserName.errors.required">User Name is required</small>
+            <small class="text-danger" *ngIf="UserName.errors.minlength">Min Length is 3</small>
+            <small class="text-danger" *ngIf="UserName.errors.forbiddenName">{{UserName.errors.forbiddenName.value}} is not allowed</small>
+        </div>
+        </div>
+        <div class="form-group">
+                      <label>Email</label>
+                     <input type="text" [class.is-invalid]="Email.invalid && Email.touched" formControlName="Email" 
+                class="form-control">
+                        <small class="text-danger" [class.d-none]="Email.valid || Email.untouched">Email is required
+                        </small>
+            </div>
+            <div class="form-group">
+                          <label>Birth Date</label>
+                           <input type="date" value="1995-01-01"
+                                min="1940-01-01" max="2020-01-01" formControlName="BirthDay" class="form-control">
+                            <small class="text-danger" [class.d-none]="BirthDay.valid || BirthDay.untouched">BirthDay is required
+                            </small>
+                </div>
+                <div class="form-group">
+                              <label>Image</label>
+                               <input type="text" formControlName="Image" class="form-control">
+                                <small class="text-danger" [class.d-none]="Image.valid"></small>
+                </div>
+           <div class="form-group">
+               <label>password</label>
+                <input formControlName="Password" type="password" class="form-control" />
+            <small class="text-danger" [class.d-none]="Password.valid || Password.untouched">password is required
+            </small>
+           </div>
+    
+           <div class="form-group">
+                 <label>Confirm password</label>
+                 <input formControlName="ConfirmPassword" [class.is-invalid]="registerForm.errors?.misMatch"  type="password" class="form-control" />
+           <small class="text-danger" *ngIf="registerForm.errors?.misMatch">Password and confirm password not match</small>
+        </div>
+            <button  id="sign" (click)="register()" class="btn btn-block">Register</button>
+    </form>
+    <p class='text-uppercase text-center f-statment'>Hav already An Account?<a [routerLink]="[ '/Login']">Log In</a>></p>
+        
+</div>
+

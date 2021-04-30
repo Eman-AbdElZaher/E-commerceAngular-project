@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark py-1 py-md-2  text-capitalize w-100">
-  <a class="navbar-brand ml-lg-5 ml-sm-0">Fash<span>i.</span></a>
+  <a class="navbar-brand ml-lg-5 ml-sm-0">{{StoreName}}<span>.</span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-mobile" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,13 +12,18 @@
         <li class="nav-item px-2" >
           <a class="nav-link" routerLink="/Categories/1">Shop</a>
         </li>
-        <li class="nav-item px-2" >
-          <a class="nav-link" routerLink="/Admin">Admin</a>
-        </li>
+        <div *ngIf="accountservice.currentUserId!= null">
+          <li class="nav-item px-2" *ngIf="accountservice.isLoggedIn() && accountservice.currentUser.admin">
+            <a class="nav-link" routerLink="/Admin">Admin</a>
+          </li>
+        </div>
       </ul>
-      <div class="ml-auto authent">
+      <div class="ml-auto authent" *ngIf="accountservice.isLoggedIn()">
            <a routerLink="/Login" class=" pr-3 border-right">Log In</a>
-          <a routerLink="/Signup" class=" btn signup">Sign UP</a>
+          <a class="btn signup" [routerLink]="[ '/Register' ]">Sign UP</a>
+      </div>
+      <div class="ml-auto authent" *ngIf="!accountservice.isLoggedIn()">
+        <a (click)="logout()">Logout</a> 
       </div>
     </div>
   </div>
