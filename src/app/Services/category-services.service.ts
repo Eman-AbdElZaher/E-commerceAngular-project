@@ -60,10 +60,20 @@ return null;
 //  // var temp:Product(pro.Name,pro.Quantity,pro.Price,pro.Img,pro.Color)
 //  return this.http.put<any>(this.ApiUrl+'/Categories',val);
 // }
+// Update(pro:Product)
+// {
+//  console.log(pro);
+//  // const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
+//  const headers = { 'content-type': 'application/json'}   
+//  //const body =JSON.stringify(pro);
+//   return  this.http.put<IProduct>("http://localhost:36197/api/Products/"+pro.id,pro,{'headers':headers})
+       
+   
+// }
 
-UpdateCategory(id:ICategory):Observable<any>{
-
-  return this.http.put<ICategory>(`http://localhost:36197/api/Categories`,id);
-
+UpdateCategory(cat:Category){
+  console.log(cat.id);
+  
+  return this.http.put<Category>("http://localhost:36197/api/Categories/"+cat.id,cat)
 } 
 }

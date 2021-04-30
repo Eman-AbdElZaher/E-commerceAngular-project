@@ -3,6 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
  
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CreateProductComponent } from './Product/create-product/create-product.component';
+import { UpdateComponent } from './Product/update/update.component';
+import { DetailsComponent } from './Product/details/details.component';
+import { DeleteComponent } from './Product/delete/delete.component';
+import { IndexComponent } from './Product/index/index.component';
 import { HeaderComponent } from './Layout/header/header.component';
 import { FooterComponent } from './Layout/footer/footer.component';
 import { BannerComponent } from './Layout/banner/banner.component';
@@ -21,6 +26,11 @@ import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
+        CreateProductComponent,
+        UpdateComponent,
+        DetailsComponent,
+        DeleteComponent,
+        IndexComponent,
       HeaderComponent,
       FooterComponent,
       BannerComponent,
@@ -35,9 +45,8 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
     HttpClientModule,
-    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

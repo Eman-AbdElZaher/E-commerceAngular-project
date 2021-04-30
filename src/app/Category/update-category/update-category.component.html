@@ -1,11 +1,13 @@
 <p>update-category works!</p>
 <div class="container">
-    <h2> Category form </h2>
-    <form [formGroup]="CategoryForm" method="POST">
+    <h2> Update Category</h2>
+    <form [formGroup]="CategoryForm">
         {{CategoryForm.value |json}}
+          id:
+         <input formControlName="id"  type="hidden"  value="id" class="form-control" />
         <div class="form-group">
             <label>Name</label>
-            <input [class.is-invalid]="Name.invalid && Name.touched" formControlName="Name" type="text"
+            <input [class.is-invalid]="Name.invalid && Name.touched" formControlName="name" type="text"
                 [class.is-valid]="Name.valid" class="form-control">
              <div *ngIf="Name.invalid && Name.touched">
                 <small *ngIf="Name.errors.required" class="text-danger">
@@ -17,7 +19,7 @@
         </div>
         <div class="form-group">
              <label>Image</label>
-             <input formControlName="Image" [class.is-invalid]="ImageCat.invalid && ImageCat.touched"  type="file" class="form-control-file"   />
+             <input formControlName="image" [class.is-invalid]="ImageCat.invalid && ImageCat.touched"  type="file" class="form-control-file"   />
              
         </div>
         <button type="submit" (click) ="updateCat()"  class="btn btn-primary">update</button>
