@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ICategory } from 'src/app/Services/API_Category';
+import { Category, ICategory } from 'src/app/Services/API_Category';
 import { CategoryServicesService } from 'src/app/Services/category-services.service';
 
 @Component({
@@ -17,7 +17,14 @@ export class HomeComponent implements OnInit {
     ,private service:CategoryServicesService) { }
 
   ngOnInit(): void {
-    // this.categories=this.service.getAll();
+   this.service.getAll().subscribe(
+      (category)=>{
+        console.log(category.length);
+        this.categories=category;
+        console.log(this.categories);
+      }
+         
+   );
   }
   goToCategoryDetails(cat)
   {

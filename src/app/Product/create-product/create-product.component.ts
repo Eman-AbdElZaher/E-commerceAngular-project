@@ -23,7 +23,7 @@ createproduct=this.fb.group({
   image:['',Validators.required],
   color:['',Validators.required] ,
   categoryID:['',Validators.required]
-},{validators:[checkPrice]})
+})
 
 get name(){
 return this.createproduct.get('name');

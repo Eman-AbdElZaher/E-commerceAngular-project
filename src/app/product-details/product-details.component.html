@@ -7,25 +7,8 @@
               </div> 
             </div>
             <div class="col-md-6">
-                <h5>{{product.name}}</h5>
+                <h5><strong>Name:</strong>{{product.name}}</h5>
                 <p class="mb-2 text-muted text-uppercase small">{{categoryName}}</p>
-                <ul class="rating flex">
-                  <li>
-                    <i class="fas fa-star fa-sm text-primary"></i>
-                  </li>
-                  <li>
-                    <i class="fas fa-star fa-sm text-primary"></i>
-                  </li>
-                  <li>
-                    <i class="fas fa-star fa-sm text-primary"></i>
-                  </li>
-                  <li>
-                    <i class="fas fa-star fa-sm text-primary"></i>
-                  </li>
-                  <li>
-                    <i class="far fa-star fa-sm text-primary"></i>
-                  </li>
-                </ul>
                 <p><span class="mr-1"><strong>${{product.price}}</strong></span></p>
                 <div class="table-responsive">
                   <table class="table table-sm table-borderless mb-0">
@@ -46,6 +29,7 @@
                   <table class="table table-sm table-borderless">
                     <tbody>
                       <tr>
+                        <th class="pl-0 w-25" scope="row"><strong>Quantity:</strong></th>
                         <td class="pl-0 pb-0 w-25">{{product.quantity}}</td>
                       </tr>
                     </tbody>

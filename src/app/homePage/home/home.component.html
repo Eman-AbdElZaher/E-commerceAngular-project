@@ -41,9 +41,9 @@
       <div class="row">
         <div class="col-lg-4 category" *ngFor="let cat of categories" (click)="goToCategoryDetails(cat)">
           <div class="single-banner">
-            <img [src]="cat.Image" alt="">
+            <img [src]="cat.image" alt="">
             <div class="inner-text">
-            <h4>{{cat.Name}}</h4>
+            <h4>{{cat.name}}</h4>
             </div>
             </div>
         </div>
