@@ -2,7 +2,7 @@
 <div class="container">
     <h3>Update Product </h3>
     <form [formGroup]="updateproduct">
-        id:
+        <!-- id: -->
          <input formControlName="id"  type="hidden"  value="id" class="form-control" />
         
         <div class="form-group">
@@ -26,7 +26,7 @@
              <input formControlName="quantity" [class.is-invalid]="Quantity.invalid && Quantity.touched"   type="text" class="form-control"/>
             <small class="text-danger" *ngIf="updateproduct.errors?.q_valid">Quantity must be positive and more than Zero</small>
         </div>
-        color 
+        <label>Color</label>
         <div class="form-group">
             <select class="custom-select" formControlName="color"    type="text" class="form-control"> 
                
@@ -34,7 +34,7 @@
                 <option *ngFor="let c of color "  >{{c}}  </option>
             </select>
         </div>
-        CategoryId
+       <label>Category</label>
         <div class="form-group">
             <select class="custom-select" formControlName="categoryID"    type="text" class="form-control"> 
                
@@ -48,12 +48,14 @@
             <small class="text-danger" *ngIf="updateproduct.errors?.img_valid">Password and confirm password not match</small>
         </div>
 <div>
+    <label>Rate</label>
      <input formControlName="rate"  type="text" class="form-control"/>
+    <label>Description</label>
      <input formControlName="description"  type="text" class="form-control"/>
            
 </div>
         
-            <button type="submit" [disabled]="updateproduct.invalid" (click)="update()" class="btn btn-primary">update</button>
+            <button type="submit" [disabled]="updateproduct.invalid" (click)="update()" class="btn btn-primary" id="btn" routerLink="/index">update</button>
     </form>
 
        
