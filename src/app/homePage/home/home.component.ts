@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
     ,private service:CategoryServicesService) { }
 
   ngOnInit(): void {
-    this.categories=this.service.getAll();
+    // this.categories=this.service.getAll();
   }
   goToCategoryDetails(cat)
   {

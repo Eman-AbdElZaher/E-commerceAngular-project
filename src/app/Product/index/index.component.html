@@ -1,0 +1,42 @@
+ <div class="container">
+     <h2>All products</h2>
+<button type="button" class="btn btn-primary" id="btn"  routerLink="/create">Add Product</button>
+<table  class="table table-hover">
+    <thead>
+        
+    
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th> 
+        <th>Color</th>
+        <th>Rate</th>
+        <th>Description</th>
+       
+        <th>Image name</th>
+
+        <th>Category ID</th>     
+        <th col-span="3">Links</th>   
+    </tr>
+</thead>
+    <tbody>
+    <tr *ngFor="let product of ProductList">
+        <td >{{product.id}}</td>
+        <td>{{product.name}}</td>
+         <td>{{product.price}}</td>
+        <td>{{product.quantity}}</td>       
+        <td>{{product.color}}</td>
+        <td>{{product.rate}}</td>
+        <td>{{product.description}}</td>        
+        <td>{{product.image}}</td>
+        <td>{{product.categoryID}}</td>
+        <td> <a class="nav-link" routerLink="/update/{{product.id}}">update </a></td>
+        <td><a class="nav-link" routerLink="/delete/{{product.id}}">delete </a></td>
+        <td><a class="nav-link" routerLink="/details/{{product.id}}">details </a></td>
+    </tr>
+
+</tbody>
+</table>
+
+</div> 

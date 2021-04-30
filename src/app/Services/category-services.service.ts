@@ -1,64 +1,73 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Category} from './API_Category'
+import {Category, ICategory} from './API_Category';
+import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryServicesService {
+   ApiUrl="http://localhost:36197/api"
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
 Categories=new Array();
-Create(cat:Category)
+// CreateCategory(val:ICategory):Observable<ICategory>
+// {
+//  // var temp:Product(pro.Name,pro.Quantity,pro.Price,pro.Img,pro.Color)
+//  return this.http.post<ICategory>(this.ApiUrl+'/Categories',val); 
+// } 
+CreateCategory(cat:Category): Observable<ICategory> {
+
+  const headers = {'content-type': 'application/json'}  
+
+  const body=JSON.stringify(cat);
+
+  console.log(body)
+
+  return this.http.post<ICategory>('http://localhost:36197/api/Categories', body,{'headers':headers})
+
+}
+DeleteCategory(id:any):Observable<any>
 {
+  // const headers = {'content-type': 'application/json'}  
+
+  // const body=JSON.stringify(id);
+
+  // console.log(body)
  // var temp:Product(pro.Name,pro.Quantity,pro.Price,pro.Img,pro.Color)
-this.Categories.push(cat);
-return "sucess";
+ return this.http.delete(`http://localhost:36197/api/Categories/${id}`);
 }
-getAll()
+getAll():Observable<ICategory[]>
 {
-  return this.Categories;
-}
-getDetails(id:number)
-{
- let all= this.Categories
-
-let e;
-for(e of all)
-{
-if(e.id==id)
-{return e;}
-}
-return null;
+   return this.http.get<ICategory[]>('http://localhost:36197/api/Categories');
 }
 
-Update(cat:Category)
-{
- let temp= this.getDetails(cat.ID);
- if(temp!=null)
- {
-   temp.Name=cat.Name;
-   temp.Image=cat.Image;
-  let res= this.Categories.findIndex(c=>c.ID==c.ID);
-  if(res!=-1)
-  {
-    this.Categories[res]=temp;
-  }
- }
+getDetails(id:number):Observable<ICategory>
+{console.log("url:"+"http://localhost:36197​/api​/Categories/"+id);
+console.log("res"+this.http.get<ICategory>("http://localhost:36197​/api​/Categories​/"+id));
+
+  return this.http.get<ICategory>("http://localhost:36197/api/Categories/"+id);
 }
-Delete(id:number)
-{
-  let res= this.Categories.findIndex(c=>c.ID==id);
-  if(res!=-1)
-  {
-    for(let i=res;i<this.Categories.length-1;i++)
-    {
-         this.Categories[res]=this.Categories[res+1];
-    }
-    return "Sucessfully Deleted";
-  }
-  else{
-    return "Element not found";
-  }
-}
- 
-}
+
+// UpdateCategory(val:any)
+// {
+//  // var temp:Product(pro.Name,pro.Quantity,pro.Price,pro.Img,pro.Color)
+//  return this.http.put<any>(this.ApiUrl+'/Categories',val);
+// }
+// Update(pro:Product)
+// {
+//  console.log(pro);
+//  // const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
+//  const headers = { 'content-type': 'application/json'}   
+//  //const body =JSON.stringify(pro);
+//   return  this.http.put<IProduct>("http://localhost:36197/api/Products/"+pro.id,pro,{'headers':headers})
+       
+   
+// }.UpdateCategory
+
+UpdateCategory(cat:Category){
+  console.log(cat.id);
+  
+  return this.http.put<Category>("http://localhost:36197/api/Categories/"+cat.id,cat)
+} 
+} 

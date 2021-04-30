@@ -1,0 +1,65 @@
+
+<div class="container">
+    <h3>Update Product </h3>
+    <form [formGroup]="updateproduct">
+        <!-- id: -->
+         <input formControlName="id"  type="hidden"  value="id" class="form-control" />
+        
+        <div class="form-group">
+             <label> Name</label>
+             <input formControlName="name" [class.is-invalid]="Name.invalid && Name.touched" type="text" class="form-control" />
+           
+        </div>
+        <div *ngIf="Name.invalid &&Name.touched">
+            <small class="text-danger" *ngIf="Name.errors.required">User Name is required</small>
+            <small class="text-danger" *ngIf="Name.errors.minlength">Min Length is 3</small>
+             <small class="text-danger" *ngIf="Name.errors.forbiddenName">{{userName.errors.forbiddenName.value}} is not allowed</small> -->
+        </div>
+    
+            <div class="form-group">
+             <label>Price</label>
+             <input formControlName="price" [class.is-invalid]="Price.invalid && Price.touched"   type="text" class="form-control"/>
+            <small class="text-danger" *ngIf="updateproduct.errors?.P_valid">Price must be positive </small>
+        </div>
+        <div class="form-group">
+             <label>Quantity</label>
+             <input formControlName="quantity" [class.is-invalid]="Quantity.invalid && Quantity.touched"   type="text" class="form-control"/>
+            <small class="text-danger" *ngIf="updateproduct.errors?.q_valid">Quantity must be positive and more than Zero</small>
+        </div>
+        <label>Color</label>
+        <div class="form-group">
+            <select class="custom-select" formControlName="color"    type="text" class="form-control"> 
+               
+
+                <option *ngFor="let c of color "  >{{c}}  </option>
+            </select>
+        </div>
+       <label>Category</label>
+        <div class="form-group">
+            <select class="custom-select" formControlName="categoryID"    type="text" class="form-control"> 
+               
+
+                <option *ngFor="let item of category" [value]="item.id">{{item.name}}  </option>
+            </select>
+        </div>
+         <div class="form-group">
+             <label>Image</label>
+             <input formControlName="image" [class.is-invalid]="Img.invalid && Img.touched"   type="text" class="form-control"/>
+            <small class="text-danger" *ngIf="updateproduct.errors?.img_valid">Password and confirm password not match</small>
+        </div>
+<div>
+    <label>Rate</label>
+     <input formControlName="rate"  type="text" class="form-control"/>
+    <label>Description</label>
+     <input formControlName="description"  type="text" class="form-control"/>
+           
+</div>
+        
+            <button type="submit" [disabled]="updateproduct.invalid" (click)="update()" class="btn btn-primary" id="btn" routerLink="/index">update</button>
+    </form>
+
+       
+   
+        
+</div>
+
