@@ -1,9 +1,9 @@
-<p>update-category works!</p>
+
 <div class="container">
-    <h2> Update Category</h2>
+    <h2>Admin: Update Category</h2>
     <form [formGroup]="CategoryForm">
-        {{CategoryForm.value |json}}
-          id:
+        <!-- {{CategoryForm.value |json}} -->
+          <!-- id: -->
          <input formControlName="id"  type="hidden"  value="id" class="form-control" />
         <div class="form-group">
             <label>Name</label>
@@ -19,9 +19,9 @@
         </div>
         <div class="form-group">
              <label>Image</label>
-             <input formControlName="image" [class.is-invalid]="ImageCat.invalid && ImageCat.touched"  type="file" class="form-control-file"   />
+             <input formControlName="image" [class.is-invalid]="ImageCat.invalid && ImageCat.touched"  type="file" class="form-control-file"  />
              
         </div>
-        <button type="submit" (click) ="updateCat()"  class="btn btn-primary">update</button>
+        <button type="submit" (click) ="updateCat()" routerLink="/CategoryGetAll"  class="btn btn-primary" id="btn">update</button>
     </form>
 </div>

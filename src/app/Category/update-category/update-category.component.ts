@@ -84,19 +84,31 @@ setdata(cat :ICategory)
   this.CategoryForm.patchValue({
      id:this.id,
      name :cat.name,
-     Image:cat.image
+     image:cat.image
   })
 }
  q:number
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params:ParamMap)=>
-
     {
 
       this.q=parseInt(params.get('id'));
+      console.log("id:"+ this.id);
+      this.service.getDetails(this.q).subscribe(
+       p=>{
+         this.setdata(p);
+         console.log("in "+p);
+       },
+       errorResponse=>
+       {
+        this.errorMsg=errorResponse;
+       }
+       )
 
-    })
-  }
-  
+      })
+    
+   
+    
+    }
 
 }

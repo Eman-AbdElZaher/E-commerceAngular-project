@@ -42,17 +42,11 @@ getAll():Observable<ICategory[]>
    return this.http.get<ICategory[]>('http://localhost:36197/api/Categories');
 }
 
-getDetails(id:number)
-{
- let all= this.Categories
+getDetails(id:number):Observable<ICategory>
+{console.log("url:"+"http://localhost:36197​/api​/Categories/"+id);
+console.log("res"+this.http.get<ICategory>("http://localhost:36197​/api​/Categories​/"+id));
 
-let e;
-for(e of all)
-{
-if(e.id==id)
-{return e;}
-}
-return null;
+  return this.http.get<ICategory>("http://localhost:36197/api/Categories/"+id);
 }
 
 // UpdateCategory(val:any)
@@ -69,11 +63,11 @@ return null;
 //   return  this.http.put<IProduct>("http://localhost:36197/api/Products/"+pro.id,pro,{'headers':headers})
        
    
-// }
+// }.UpdateCategory
 
 UpdateCategory(cat:Category){
   console.log(cat.id);
   
   return this.http.put<Category>("http://localhost:36197/api/Categories/"+cat.id,cat)
 } 
-}
+} 

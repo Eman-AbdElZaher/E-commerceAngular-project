@@ -52,10 +52,7 @@ categor:ICategory[];
 
   ); 
     
-      
  }
-
- 
   ngOnInit(): void {
     this.img=null;
   }

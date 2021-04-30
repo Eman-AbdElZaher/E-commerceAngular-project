@@ -28,12 +28,12 @@ export class GetAllCategoryComponent implements OnInit {
   {
     if(confirm('Are you sure'))
     {
-      this.service.DeleteCategory(item.id).subscribe(data=>{alert(data.toString())
-        alert('success');
-        this.refreshcatlist();
+      this.service.DeleteCategory(item.id).subscribe(data=>{alert(data.toString());
+      
       });  
-     
+      this.refreshcatlist();
     }
+  
   }
   
   // Cat:Category = {
